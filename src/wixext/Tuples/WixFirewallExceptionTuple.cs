@@ -1,12 +1,36 @@
 // Copyright (c) .NET Foundation and contributors. All rights reserved. Licensed under the Microsoft Reciprocal License. See LICENSE.TXT file in the project root for full license information.
 
+namespace WixToolset.Firewall
+{
+    using WixToolset.Data;
+    using WixToolset.Firewall.Tuples;
+
+    public static partial class FirewallTupleDefinitions
+    {
+        public static readonly IntermediateTupleDefinition WixFirewallException = new IntermediateTupleDefinition(
+            FirewallTupleDefinitionType.WixFirewallException.ToString(),
+            new[]
+            {
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.Name), IntermediateFieldType.String),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.RemoteAddresses), IntermediateFieldType.String),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.Port), IntermediateFieldType.String),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.Protocol), IntermediateFieldType.Number),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.Program), IntermediateFieldType.String),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.Attributes), IntermediateFieldType.Number),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.Profile), IntermediateFieldType.Number),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.ComponentRef), IntermediateFieldType.String),
+                new IntermediateFieldDefinition(nameof(WixFirewallExceptionTupleFields.Description), IntermediateFieldType.String),
+            },
+            typeof(WixFirewallExceptionTuple));
+    }
+}
+
 namespace WixToolset.Firewall.Tuples
 {
     using WixToolset.Data;
 
     public enum WixFirewallExceptionTupleFields
     {
-        WixFirewallException,
         Name,
         RemoteAddresses,
         Port,
@@ -14,7 +38,7 @@ namespace WixToolset.Firewall.Tuples
         Program,
         Attributes,
         Profile,
-        Component_,
+        ComponentRef,
         Description,
     }
 
@@ -29,12 +53,6 @@ namespace WixToolset.Firewall.Tuples
         }
 
         public IntermediateField this[WixFirewallExceptionTupleFields index] => this.Fields[(int)index];
-
-        public string WixFirewallException
-        {
-            get => this.Fields[(int)WixFirewallExceptionTupleFields.WixFirewallException].AsString();
-            set => this.Set((int)WixFirewallExceptionTupleFields.WixFirewallException, value);
-        }
 
         public string Name
         {
@@ -78,10 +96,10 @@ namespace WixToolset.Firewall.Tuples
             set => this.Set((int)WixFirewallExceptionTupleFields.Profile, value);
         }
 
-        public string Component_
+        public string ComponentRef
         {
-            get => this.Fields[(int)WixFirewallExceptionTupleFields.Component_].AsString();
-            set => this.Set((int)WixFirewallExceptionTupleFields.Component_, value);
+            get => this.Fields[(int)WixFirewallExceptionTupleFields.ComponentRef].AsString();
+            set => this.Set((int)WixFirewallExceptionTupleFields.ComponentRef, value);
         }
 
         public string Description
